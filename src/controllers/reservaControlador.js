@@ -53,7 +53,7 @@ const crearReserva = async (req, res) => {
 //Leer
 const leerReservas = async (req, res) => {
   try {
-    const reservaLeida = await prisma.reserva.findMany();
+    const reservaLeida = await prisma.reserva.findMany({where: {id_usuario: req.usuario.id}, include: {rancho: true}});
     return res.status(200).json(reservaLeida);
   } catch (error) {
     return res.status(400).json({ message: "ERROR" });
