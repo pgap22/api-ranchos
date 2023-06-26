@@ -1,4 +1,5 @@
 import { borrarRancho, crearRancho, editarRancho, individualRancho, leerRancho } from "../controllers/ranchoControlador.js";
+import { verificarRancho } from "../controllers/reservaControlador.js";
 import { adminMiddleware, verificarMiddleware } from "../middleware/autentificacionUsuario.js";
 import { Router } from "express";
 
@@ -17,5 +18,7 @@ router.patch("/:id",verificarMiddleware, adminMiddleware, editarRancho)
 
 //Borrar
 router.delete("/:id", verificarMiddleware, adminMiddleware, borrarRancho)
+
+router.get("/verificar/:id", verificarMiddleware, adminMiddleware, verificarRancho)
 
 export default router
